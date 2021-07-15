@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-class BindingFragment<T : ViewDataBinding> constructor(
+abstract class BindingFragment<T : ViewDataBinding> constructor(
     @LayoutRes val layoutId: Int
 ) : Fragment(), Initialization {
 
