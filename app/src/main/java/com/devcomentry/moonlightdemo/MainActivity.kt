@@ -1,11 +1,8 @@
 package com.devcomentry.moonlightdemo
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.devcomentry.moonlight.binding.BindingActivity
+import com.devcomentry.moonlightdemo.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
+
 }
