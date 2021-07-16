@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BindingListAdapter<E : Any, T : ViewDataBinding>(
-    @LayoutRes private val layoutId: Int,
+    @LayoutRes val layoutId: Int,
     private val callback: DiffUtil.Callback? = null,
 ) : RecyclerView.Adapter<BindingViewHolder<E, T>>() {
     protected var itemList: List<E> = listOf()
@@ -20,9 +20,11 @@ abstract class BindingListAdapter<E : Any, T : ViewDataBinding>(
         parent: ViewGroup,
         viewType: Int
     ): BindingViewHolder<E, T> {
-        val binding = parent.binding<T>(layoutId)
+        val binding = getBinging(parent)
         return BindingViewHolder(itemBinding = binding)
     }
+
+    protected fun getBinging(viewGroup: ViewGroup): T = viewGroup.binding<T>(layoutId)
 
     override fun onBindViewHolder(holder: BindingViewHolder<E, T>, position: Int) {
         holder.onBind(itemList[position])
