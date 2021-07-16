@@ -4,8 +4,11 @@
 package com.devcomentry.moonlight.binding
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
@@ -36,4 +39,25 @@ inline fun <reified R> Any?.ifNotNull(
         ifNotNull(this)
     }
     return this
+}
+
+object ViewExtensions{
+
+    @JvmStatic
+    @BindingAdapter("toast")
+    fun bindToast(view: View, text: String?) {
+        text.ifNotNull<String> {
+            Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("gone")
+    fun bindGone(view: View, shouldBeGone: Boolean) {
+        view.visibility = if (shouldBeGone) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+    }
 }

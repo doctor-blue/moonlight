@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BindingListAdapter<E : Any, T : ViewDataBinding>(
-    private val onItemClick: (E) -> Any = {},
     @LayoutRes val layoutId: Int,
     private val callback: DiffUtil.Callback? = null,
 ) : RecyclerView.Adapter<BindingViewHolder<E, T>>() {
@@ -22,7 +21,7 @@ abstract class BindingListAdapter<E : Any, T : ViewDataBinding>(
         viewType: Int
     ): BindingViewHolder<E, T> {
         val binding = getBinding(parent)
-        return BindingViewHolder(itemBinding = binding, onItemClick)
+        return BindingViewHolder(itemBinding = binding)
     }
 
     protected fun getBinding(viewGroup: ViewGroup): T = viewGroup.binding(layoutId)
